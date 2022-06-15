@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const cardSchema = new mongoose.Schema({
+const articleSchema = new mongoose.Schema({
   keyword: {
     type: String,
     required: true,
@@ -42,8 +42,14 @@ const cardSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
-    select: false,
+    // select: false,
   },
 });
 
-module.exports = mongoose.model('card', cardSchema);
+// articleSchema.methods.toJSON = function () {
+//   // eslint-disable-line
+//   const { owner, ...obj } = this.toObject(); // eslint-disable-line
+//   return obj;
+// };
+
+module.exports = mongoose.model('article', articleSchema);
