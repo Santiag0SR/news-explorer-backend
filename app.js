@@ -26,19 +26,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger); // the request logger
 
-app.use((req, res, next) => {
-  req.user = {
-    _id: '62a74d5575478a48ed9c0054',
-  };
+// app.use((req, res, next) => {
+//   req.user = {
+//     _id: '62a74d5575478a48ed9c0054',
+//   };
 
-  next();
-});
+//   next();
+// });
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000/');
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
+    'Origin, X-Requested-With, Content-Type, Accept'
   );
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
   next();
