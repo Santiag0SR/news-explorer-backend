@@ -21,7 +21,6 @@ const createUser = (req, res, next) => {
           'The user with the provided email already exist',
         );
       } else {
-        console.log(user);
         return bcrypt.hash(password, 10);
       }
     })

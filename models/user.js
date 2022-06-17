@@ -52,7 +52,7 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(
     });
 };
 
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function () { // eslint-disable-line
   const { password, ...obj } = this.toObject(); // eslint-disable-line
   return obj;
 };

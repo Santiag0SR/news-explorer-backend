@@ -79,21 +79,26 @@ const validateIdArticle = celebrate({
 
 const validateSaveArticle = celebrate({
   body: {
-    keyword: Joi.string().required().min(2).max(30).messages({
-      'string.empty': 'The "keyword" filed must be filled in',
-    }),
-    title: Joi.string().required().min(2).max(30).messages({
-      'string.empty': 'The "title" filed must be filled in',
-    }),
-    text: Joi.string().required().min(2).messages({
-      'string.empty': 'The "text" filed must be filled in',
-    }),
-    date: Joi.string().required().min(2).max(30).messages({
-      'string.empty': 'The "date" filed must be filled in',
-    }),
-    source: Joi.string().required().min(2).max(30).messages({
-      'string.empty': 'The "source" filed must be filled in',
-    }),
+    keyword: Joi.string().required().min(2).max(30)
+      .messages({
+        'string.empty': 'The "keyword" filed must be filled in',
+      }),
+    title: Joi.string().required().min(2).max(30)
+      .messages({
+        'string.empty': 'The "title" filed must be filled in',
+      }),
+    text: Joi.string().required().min(2)
+      .messages({
+        'string.empty': 'The "text" filed must be filled in',
+      }),
+    date: Joi.string().required().min(2).max(30)
+      .messages({
+        'string.empty': 'The "date" filed must be filled in',
+      }),
+    source: Joi.string().required().min(2).max(30)
+      .messages({
+        'string.empty': 'The "source" filed must be filled in',
+      }),
     link: Joi.string()
       .required()
       .custom(validateURL)

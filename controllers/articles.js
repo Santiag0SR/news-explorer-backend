@@ -6,7 +6,8 @@ const ForbiddenError = require('../errors/conflict-error');
 const BadRequestError = require('../errors/bad-request-error');
 
 const getArticles = (req, res, next) => {
-  Article.find({})
+  const ownerId = req.user._id;
+  Article.find({ owner: ownerId })
     .then((articles) => res.status(OK).send(articles))
     .catch(next);
 };
