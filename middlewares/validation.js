@@ -60,45 +60,40 @@ const validateIdArticle = celebrate({
   }),
 });
 
-const validateProfileUser = celebrate({
-  body: {
-    name: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.min': 'The minimum lenght of the "name" field is 2',
-        'string.max': 'The maximum lenght of the "name" field is 30',
-        'string.empty': 'The "name" filed must be filled in',
-      }),
-    about: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.min': 'The minimum lenght of the "about" field is 2',
-        'string.max': 'The maximum lenght of the "about" field is 30',
-        'string.empty': 'The "about" filed must be filled in',
-      }),
-  },
-});
+// const validateProfileUser = celebrate({
+//   body: {
+//     name: Joi.string().required().min(2).max(30)
+//       .messages({
+//         'string.min': 'The minimum lenght of the "name" field is 2',
+//         'string.max': 'The maximum lenght of the "name" field is 30',
+//         'string.empty': 'The "name" filed must be filled in',
+//       }),
+//     about: Joi.string().required().min(2).max(30)
+//       .messages({
+//         'string.min': 'The minimum lenght of the "about" field is 2',
+//         'string.max': 'The maximum lenght of the "about" field is 30',
+//         'string.empty': 'The "about" filed must be filled in',
+//       }),
+//   },
+// });
 
 const validateSaveArticle = celebrate({
   body: {
-    keyword: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.empty': 'The "keyword" filed must be filled in',
-      }),
-    title: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.empty': 'The "title" filed must be filled in',
-      }),
-    text: Joi.string().required().min(2)
-      .messages({
-        'string.empty': 'The "text" filed must be filled in',
-      }),
-    date: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.empty': 'The "date" filed must be filled in',
-      }),
-    source: Joi.string().required().min(2).max(30)
-      .messages({
-        'string.empty': 'The "source" filed must be filled in',
-      }),
+    keyword: Joi.string().required().min(2).max(30).messages({
+      'string.empty': 'The "keyword" filed must be filled in',
+    }),
+    title: Joi.string().required().min(2).max(30).messages({
+      'string.empty': 'The "title" filed must be filled in',
+    }),
+    text: Joi.string().required().min(2).messages({
+      'string.empty': 'The "text" filed must be filled in',
+    }),
+    date: Joi.string().required().min(2).max(30).messages({
+      'string.empty': 'The "date" filed must be filled in',
+    }),
+    source: Joi.string().required().min(2).max(30).messages({
+      'string.empty': 'The "source" filed must be filled in',
+    }),
     link: Joi.string()
       .required()
       .custom(validateURL)
@@ -121,6 +116,5 @@ module.exports = {
   validateCreateUser,
   validateIdUser,
   validateIdArticle,
-  validateProfileUser,
   validateSaveArticle,
 };
