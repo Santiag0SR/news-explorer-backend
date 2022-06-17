@@ -16,10 +16,10 @@ module.exports = (req, res, next) => {
   try {
     payload = jwt.verify(
       token,
-      NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
+      NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key'
     );
   } catch (err) {
-    return next(new AuthenticationError('Authorization is still Required'));
+    return next(new AuthenticationError('Authorization is still Required yes'));
   }
 
   req.user = payload; // assigning the payload to the request object
