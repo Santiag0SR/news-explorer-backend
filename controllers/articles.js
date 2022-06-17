@@ -37,10 +37,10 @@ const saveArticle = (req, res, next) => {
 const deleteArticle = (req, res, next) => {
   const { articleId } = req.params;
   Article.findById(articleId)
-    .orFail(() => new NotFoundError('Card id not found'))
-    .then((articles) => {
+    .orFail(() => new NotFoundError('Article id not found'))
+    .then((article) => {
       if (article.owner.equals(req.user._id)) {
-        Article.deleteOne(articles).then((article) =>
+        Article.deleteOne(article).then((article) =>
           res.send({ data: article })
         );
       } else {
@@ -49,9 +49,9 @@ const deleteArticle = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError('Invalid card ID'));
+        next(new BadRequestError('Invalid article ID'));
       } else if (err.statusCode === NOT_FOUND) {
-        next(new NotFoundError('Card not found'));
+        next(new NotFoundError('Article not found'));
       } else {
         next(err);
       }

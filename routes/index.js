@@ -10,8 +10,8 @@ const {
   validateLogin,
 } = require('../middlewares/validation');
 
-router.post('/signin', validateLogin, login);
 router.post('/signup', validateCreateUser, createUser);
+router.post('/signin', validateLogin, login);
 
 router.use(auth);
 
@@ -19,7 +19,7 @@ router.use('/users', userRouter);
 router.use('/articles', articlesRouter);
 
 router.use((req, res, next) => {
-  next(new NotFoundError('Requested resource not found'));
+  next(new NotFoundError('No page found for the specified route'));
 });
 
 module.exports = router;

@@ -12,6 +12,6 @@ const {
 
 router.get('/', getArticles);
 router.post('/', validateSaveArticle, saveArticle);
-router.delete('/:articleId/', validateIdArticle, deleteArticle);
+router.delete('/:articleId', validateIdArticle, deleteArticle);
 
 module.exports = router;
