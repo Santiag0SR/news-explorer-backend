@@ -2,7 +2,7 @@ const Article = require('../models/article');
 const { OK, CREATED, NOT_FOUND } = require('../utils/apploication_constants');
 
 const NotFoundError = require('../errors/not-found-err');
-// const ForbiddenError = require('../errors/conflict-error');
+const ForbiddenError = require('../errors/conflict-error');
 const BadRequestError = require('../errors/bad-request-error');
 
 const getArticles = (req, res, next) => {
@@ -12,7 +12,9 @@ const getArticles = (req, res, next) => {
 };
 
 const saveArticle = (req, res, next) => {
-  const { keyword, title, text, date, source, link, image } = req.body;
+  const {
+    keyword, title, text, date, source, link, image,
+  } = req.body;
   const owner = req.user._id;
   Article.create({
     keyword,
@@ -40,9 +42,7 @@ const deleteArticle = (req, res, next) => {
     .orFail(() => new NotFoundError('Article id not found'))
     .then((article) => {
       if (article.owner.equals(req.user._id)) {
-        Article.deleteOne(article).then((article) =>
-          res.send({ data: article })
-        );
+        Article.deleteOne(article).then(() => res.send({ data: article }));
       } else {
         throw new ForbiddenError('You cannot delete this article');
       }
